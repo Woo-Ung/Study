@@ -2,7 +2,7 @@
 
 const int STACK_SIZE{ 10 };
 
-enum command
+enum Command
 {
 	PUSH = 1,
 	POP = 2,
