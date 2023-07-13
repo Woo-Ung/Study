@@ -38,7 +38,7 @@ int main()
 	PrintMonstersR(myList.pHead);
 	std::cout << GetMonsterCount(myList) << std::endl;
 
-	Monster* pResult = FindMonster(myList, "Demon");
+	Monster* pResult = FindMonster(myList, "Bear");
 
 	if (pResult)
 	{
@@ -50,5 +50,10 @@ int main()
 		std::cout << "Not Found!" << std::endl;
 	}
 
-	DeleteAll;
+	DeleteMonster(myList, "Demon");
+	DeleteMonster(myList, "Wolf");
+	DeleteMonster(myList, "Slime");
+	PrintMonsters(myList);
+
+	DeleteAll(myList);
 }

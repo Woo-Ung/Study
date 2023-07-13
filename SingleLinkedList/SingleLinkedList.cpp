@@ -97,5 +97,45 @@ void DeleteAll(MonsterList& list)
 
 bool DeleteMonster(MonsterList& list, const char* name)
 {
-	return false;
+	Monster* pElement = list.pHead;
+	Monster* pPrevious{};
+
+	while (pElement)
+	{
+		if (strcmp(pElement->name, name) == 0)
+		{
+			break;
+		}
+		pPrevious = pElement;
+		pElement = pElement->pNext;
+	}
+
+	if (!pElement)
+	{
+		return false;
+	}
+	//처음에 있는걸 지울때
+	if (list.pHead == list.pTail)
+	{
+		list.pHead = list.pTail = nullptr;
+	}
+	else if (pPrevious == nullptr)
+	{
+		list.pHead = pElement->pNext;
+	}
+	//꼬리에 있는걸 지울때
+	else if (pElement == list.pTail)
+	{
+		list.pTail = pPrevious;
+		pPrevious->pNext = nullptr;
+	}
+
+	else
+	{
+		pPrevious->pNext = pElement->pNext;
+	}
+
+	delete pElement;
+
+	return true;
 }
