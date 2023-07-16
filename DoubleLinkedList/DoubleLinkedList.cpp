@@ -8,18 +8,19 @@ Monster* CreateMonster(MonsterList& list, const char* name, const int hp)
 
 	strcpy_s(element->name, NAME_LENGTH, name);
 	element->hp = hp;
-
+	 
 	if (list.pTail == nullptr)
 	{
-		list.pHead = element;		
+		list.pHead = element;
+		list.pTail = element;
 	}
 
 	else
 	{		
-		list.pTail->pNext = element;
 		element->pPrevious = list.pTail;
+		list.pTail->pNext = element;		
 	}
-		
+	
 	list.pTail = element;
 
 	return element;
@@ -101,40 +102,43 @@ void DeleteAll(MonsterList& list)
 bool DeleteMonster(MonsterList& list, const char* name)
 {
 	Monster* pElement = list.pTail;
-	
+
 	while (pElement)
 	{
 		if (strcmp(pElement->name, name) == 0)
 		{
-			break;
+			break;			
 		}
-		pElement->pNext = pElement;
 		pElement = pElement->pPrevious;
-	}	
+	}
 
 	if (!pElement)
 	{
 		return false;
 	}
+
 	//처음에 있는걸 지울때
 	if (list.pTail == list.pHead)
 	{
 		list.pTail = list.pHead = nullptr;
 	}
+
 	else if (pElement->pNext == nullptr)
 	{
 		list.pTail = pElement->pPrevious;
+		list.pTail->pNext = nullptr;
 	}
-
+	
 	//꼬리에 있는걸 지울때
 	else if (pElement == list.pHead)
 	{
 		list.pHead = pElement->pNext;
-		pElement->pNext->pPrevious = nullptr;
+		list.pHead->pPrevious = nullptr;
 	}
 
 	else
 	{
+		pElement->pPrevious->pNext = pElement->pNext;
 		pElement->pNext->pPrevious = pElement->pPrevious;
 	}
 
