@@ -5,7 +5,8 @@ int main()
 {
 	Queue myQueue;
 	myQueue.Print();
-	myQueue.EnQueue(1);	
+	myQueue.EnQueue(1);
+	myQueue.Print();
 	myQueue.EnQueue(2);
 	myQueue.Print();
 	myQueue.DeQueue();

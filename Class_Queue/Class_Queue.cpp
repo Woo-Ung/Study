@@ -8,13 +8,13 @@ void Queue::EnQueue(int value)
 	if (count == 0)
 	{
 		mHead = mTail = myQ;
-		mHead->mNext = mTail;
+		
 	}
 
 	else
 	{	
 		mTail->mNext = myQ;
-		mTail = myQ;
+		mTail = mTail->mNext;
 	}
 
 	count++;
@@ -25,17 +25,17 @@ void Queue::DeQueue()
 	if (count == 0)
 	{
 		std::cout << "Already Empty!" << std::endl;
+		return;
 	}
 	
 	else
 	{
-		Element* myQ2 = mHead;
-		mHead = mHead->mNext;
-		myQ2->mNext = nullptr;
+		Element* myQ2 = mHead->mNext;
+		mHead = nullptr;
+		mHead = myQ2;
 
-		delete myQ2;
 		count--;
-	}	
+	}
 }
 
 void Queue::Print()

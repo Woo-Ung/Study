@@ -7,13 +7,13 @@ private:
 	struct Element
 	{
 		int mValue{};
-		Element* mNext;
+		Element* mNext{};
 	};
 	int count{};
 	Element* mHead;
 	Element* mTail;
 
-public:
+public:	
 	void EnQueue(int value);
 	void DeQueue();
 	void Print();
